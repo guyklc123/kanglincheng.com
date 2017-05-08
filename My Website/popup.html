@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("p").hide();
+    });
+});
+
+$(document).ready(function(){
+    $("#show").click(function(){
+        $("p").show();
+    });
+});
+</script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<title>Kang-Lin Cheng's Website</title>
+<ul id="my_nav">
+<li><a href="index.html">Home</a>
+<li><a href="games.html">Games</a>
+<li><a href="selenium.html">Selenium Playground</a>
+<li><a href="contact.html">Contact Me</a>
+</ul>
+<h1>Welcome to the Pop-Up Window Page!</h1>
+<p id="popupWindow">If you see this popped up in a new window, it means I did it correctly!</p>
+
+<button id="hide">Click me to hide paragraphs</button>
+<button id="show">Click me to show paragraphs</button>
+
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+</head>
+
+</body>
+</head>
+</html>

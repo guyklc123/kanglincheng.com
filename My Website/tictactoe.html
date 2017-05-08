@@ -1,0 +1,239 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<body>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<title>Tic Tac Toe</title>
+<center><p class="kang">Kang-Lin Cheng</p></center>
+<ul id="my_nav" class="nav nav-tabs">
+<li><a href="index.html">Home</a>
+<li class="active"><a href="games.html">Games</a>
+<li><a href="selenium.html">Selenium Playground</a>
+<li><a href="contact.html">Contact Me</a>
+</ul>
+<h1>Tic-Tac-Toe</h2>
+<h2>Let's Play a Classic Game of Tic-Tac-Toe</h2>
+<p id="explanation">You'll be x, and the AI will be o. You win the game when you've connected x's vertically, diagonally, or horizontally, three in a row.
+The computer wins if it connects o's vertically, diagonally, or horizontally three in a row.</p>
+<b><p id="counter"></p></b>
+<b><p id="winRatio"></p></b>
+<button id="b1" style="height:50px;width:50px" class="playButton" onclick="play('b1', 1)"></button><button id="b2" style="height:50px;width:50px" class="playButton" onclick="play('b2',2)"></button><button id="b3" style="height:50px;width:50px" class="playButton" onclick="play('b3',3)"></button></br>
+<button id="b4" style="height:50px;width:50px" class="playButton" onclick="play('b4',4)"></button><button id="b5" style="height:50px;width:50px" class="playButton" onclick="play('b5',5)"></button><button id="b6" style="height:50px;width:50px" class="playButton" onclick="play('b6',6)"></button></br>
+<button id="b7" style="height:50px;width:50px" class="playButton" onclick="play('b7',7)"></button><button id="b8" class="playButton" style="height:50px;width:50px" onclick="play('b8',8)"></button><button id="b9" style="height:50px;width:50px" class="playButton" onclick="play('b9',9)"></button></br>
+<p id="result"></p>
+<button id="reset" style="visibility:hidden" onclick="reset()">Reset</button>
+<script>
+var turns =0;
+var playerVictory = 0;
+var compVictory = 0;
+var tieGame = 0;
+var ratio = 0;
+//var gameBoard = ["","","","","","","","",""]; //this array stores the entire gameboard. Actually, with the new code, we don't need it.
+
+function play(bNo, index){ //We have two checks to do. One is the button itself; the other is the array that stores the results of the gameboard
+if(document.getElementById(bNo).innerHTML ==="x"||document.getElementById(bNo).innerHTML==="o"){ //don't do anything if the button has x or o. In other words, these buttons were clicked
+}else{
+document.getElementById(bNo).innerHTML = "x";
+//gameBoard[index-1] = "x"; //this is setting the x in the array. We substract 1 because index should have started at 0, but we had it at 1. For example, an index of 0 means button b1
+//console.log(gameBoard);
+document.getElementById("reset").style.visibility = "visible";
+checkWin();
+
+if(document.getElementById("result").innerHTML !== "You've won!"){
+turns++;
+
+if(turns !== 5){
+document.getElementById(compTurn()).textContent="o";
+checkCompWin(); 
+//console.log(gameBoard);
+}else{
+alert("Oh, a tie game!");
+document.getElementById("result").innerHTML = "Tie game this time around.";
+tieGame++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+}
+}
+}
+}
+function checkWin(){
+if((document.getElementById("b1").innerHTML === "x") && (document.getElementById("b2").innerHTML === "x") && (document.getElementById("b3").innerHTML === "x")){
+document.getElementById("result").innerHTML = "You've won!";
+playerVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b1").innerHTML === "x") && (document.getElementById("b4").innerHTML === "x") && (document.getElementById("b7").innerHTML === "x")){
+document.getElementById("result").innerHTML = "You've won!";
+playerVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b1").innerHTML === "x") && (document.getElementById("b5").innerHTML === "x") && (document.getElementById("b9").innerHTML === "x")){
+document.getElementById("result").innerHTML = "You've won!";
+playerVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b2").innerHTML === "x") && (document.getElementById("b5").innerHTML === "x") && (document.getElementById("b8").innerHTML === "x")){
+document.getElementById("result").innerHTML = "You've won!";
+playerVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b3").innerHTML === "x") && (document.getElementById("b6").innerHTML === "x") && (document.getElementById("b9").innerHTML === "x")){
+document.getElementById("result").innerHTML = "You've won!";
+playerVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b3").innerHTML === "x") && (document.getElementById("b5").innerHTML === "x") && (document.getElementById("b7").innerHTML === "x")){
+document.getElementById("result").innerHTML = "You've won!";
+playerVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b7").innerHTML === "x") && (document.getElementById("b8").innerHTML === "x") && (document.getElementById("b9").innerHTML === "x")){
+document.getElementById("result").innerHTML = "You've won!";
+playerVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b4").innerHTML === "x") && (document.getElementById("b5").innerHTML === "x") && (document.getElementById("b6").innerHTML === "x")){
+document.getElementById("result").innerHTML = "You've won!";
+playerVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}
+}
+
+function compTurn(){
+/*for(var i=0; i<gameBoard.length; i++){
+//this will be looping through the gameboard for open spaces
+if(gameBoard[i] !== "x" && gameBoard[i] !== "o"){
+gameBoard[i] = "o";
+document.getElementById("b" + (i +1)).innerHTML = "o"; //We need the i+1 because array starts at 0
+break;
+*/
+var target="";
+var value="";
+if((document.getElementById("b1").innerHTML == "x") && (document.getElementById("b5").innerHTML !== "x") && (document.getElementById("b5").innerHTML !=="o")){
+document.getElementById("b5").innerHTML = "o";
+}else if((document.getElementById("b3").innerHTML == "x") && (document.getElementById("b5").innerHTML !== "x") && (document.getElementById("b5").innerHTML !=="o")){
+document.getElementById("b5").innerHTML = "o"; //I can probably hard code all the possibilities here for the computer's advantage
+}else if((document.getElementById("b1").innerHTML == "x") && (document.getElementById("b2").innerHTML === "x") && (document.getElementById("b3").innerHTML !=="o") &&(document.getElementById("b3").innerHTML !=="x")){
+document.getElementById("b3").innerHTML="o";
+}else if((document.getElementById("b3").innerHTML == "x") && (document.getElementById("b6").innerHTML === "x") && (document.getElementById("b9").innerHTML !=="o") &&(document.getElementById("b9").innerHTML !=="x")){
+document.getElementById("b9").innerHTML ="o";
+}else do{ //this will randomly click on an empty button
+target = 'b' + ((Math.floor(Math.random() *9)) +1); //Math.floor() rounds it down. Math.random()+1 forces it so that the highest value can only be 9...
+value=document.getElementById(target).textContent; //the text content refers to the contents of the button tag
+}while(value);  //keep doing this until you find a button with a blank state
+return target; //return the button number
+}
+function checkCompWin(){
+if((document.getElementById("b1").innerHTML === "o") && (document.getElementById("b2").innerHTML === "o") && (document.getElementById("b3").innerHTML === "o")){
+document.getElementById("result").innerHTML = "Sorry, but looks like the computer has won!";
+compVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b1").innerHTML === "o") && (document.getElementById("b4").innerHTML === "o") && (document.getElementById("b7").innerHTML === "o")){
+document.getElementById("result").innerHTML = "Sorry, but looks like the computer has won!";
+compVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b1").innerHTML === "o") && (document.getElementById("b5").innerHTML === "o") && (document.getElementById("b9").innerHTML === "o")){
+document.getElementById("result").innerHTML = "Sorry, but looks like the computer has won!";
+compVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b2").innerHTML === "o") && (document.getElementById("b5").innerHTML === "o") && (document.getElementById("b8").innerHTML === "o")){
+document.getElementById("result").innerHTML = "Sorry, but looks like the computer has won!";
+compVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b3").innerHTML === "o") && (document.getElementById("b6").innerHTML === "o") && (document.getElementById("b9").innerHTML === "o")){
+document.getElementById("result").innerHTML = "Sorry, but looks like the computer has won!";
+compVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b3").innerHTML === "o") && (document.getElementById("b5").innerHTML === "o") && (document.getElementById("b7").innerHTML === "o")){
+document.getElementById("result").innerHTML = "Sorry, but looks like the computer has won!";
+compVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b7").innerHTML === "o") && (document.getElementById("b8").innerHTML === "o") && (document.getElementById("b9").innerHTML === "o")){
+document.getElementById("result").innerHTML = "Sorry, but looks like the computer has won!";
+compVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}else if((document.getElementById("b4").innerHTML === "o") && (document.getElementById("b5").innerHTML === "o") && (document.getElementById("b6").innerHTML === "o")){
+document.getElementById("result").innerHTML = "Sorry, but looks like the computer has won!";
+compVictory++;
+document.getElementById("counter").innerHTML = "Player Victories: " + playerVictory + " Computer Victories: " + compVictory + " Tie Games: " +tieGame;
+ratio = ((playerVictory)/(playerVictory + compVictory))*100;
+disable();
+calcRatio();
+}
+}
+function disable(){
+var buttons = document.getElementsByTagName("button"); //This is an array of all the buttons in the code.
+for(var i=0; i<buttons.length; i++){ //it's looping through the array and disabling all of the buttons.
+buttons[i].disabled = true;
+} //however, we need the reset button to be enabled, so once again, enable the reset button.
+document.getElementById("reset").disabled = false;
+}
+function reset(){ 
+var btns = document.querySelectorAll('button[class^=playButton]');
+    for (var i = 0; i < btns.length; i++) {
+        if (btns[i].innerHTML.trim() == "x" || btns[i].innerHTML.trim() =="o") {
+            btns[i].innerHTML = "";
+        }
+    }
+	document.getElementById("result").innerHTML = ""; //wiping out the results html p tag's innerHTML
+var buttons = document.getElementsByTagName("button"); //This is an array of all the buttons in the code. This'll enable all the buttons
+for(var i=0; i<buttons.length; i++){ //it's looping through the array and disabling all of the buttons.
+buttons[i].disabled = false;
+}
+turns = 0; //resetting the turns, so it doesn't say tie-game immediately.
+document.getElementById("reset").style.visibility = "hidden";
+}
+function calcRatio(){
+if(playerVictory>0 && compVictory===0){
+document.getElementById("winRatio").innerHTML = "Win Ratio: 100%";
+}else if(playerVictory ===0 && compVictory===0){
+document.getElementById("winRatio").innerHTML = "";
+}else{
+document.getElementById("winRatio").innerHTML = "Win Ratio: " + Math.round(ratio) + "%";
+}
+} 
+</script>
+</body>
+</head>
+</html>

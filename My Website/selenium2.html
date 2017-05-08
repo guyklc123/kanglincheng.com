@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<title>Kang-Lin Cheng's Website</title>
+<center><p class="kang">Kang-Lin Cheng</p></center>
+<ul id="my_nav">
+<li><a href="index.html">Home</a>
+<li><a href="games.html">Games</a>
+<li><a href="selenium.html">Selenium Playground</a>
+<li><a href="contact.html">Contact Me</a>
+</ul>
+<h1>Selenium Playground Part 2!</h1>
+<input id="correct">
+<!radio button tests. Remember to have all of the radio buttons to have the same name>
+<p>Please select a city</p>
+<form action="">
+<input type="radio" id="r1" name="city" value="la">Los Angeles</br>
+<input type="radio" id="r2" name="city" value="sf">San Francisco</br>
+<input type="radio" id="r3" name="city" value="ny">New York</br>
+<input type="radio" id="r4" name="city" value="chicago">Chicago</br>
+</form>
+<p>We will be doing some math based on your choices</p>
+<select name="math1" id="math1">
+<option value="" disabled="disabled" selected="selected">- Please Select A Number -</option>
+<option value="5">5</option>
+<option value="7">7</option>
+<option value="11">11</option>
+</select>
+<!Second dropdown>
+<p>Please select another number</p>
+<select name="math2" id="math2">
+<option value="" disabled="disabled" selected="selected">- Please Select A Number -</option>
+<option value="2">2</option>
+<option value="14">14</option>
+<option value="18">18</option>
+</select></br>
+</br>
+<button id="add" onclick="add()">Add</button>
+<button id="multiply" onclick="multiply()">Multiply</button>
+
+<p id="result"></p>
+<script>
+function add(){
+if((document.getElementById("math1").value) === "" || (document.getElementById("math2").value === "")){
+document.getElementById("result").innerHTML = "Please select valid values from both dropdowns.";
+}else{
+var firstChoice = parseInt(document.getElementById("math1").value);
+var secondChoice = parseInt(document.getElementById("math2").value);
+var answer = firstChoice + secondChoice;
+document.getElementById("result").innerHTML = "The sum of the two numbers are " + answer;
+}
+}
+
+function multiply(){
+if((document.getElementById("math1").value) === "" || (document.getElementById("math2").value === "")){
+document.getElementById("result").innerHTML = "Please select valid values from both dropdowns.";
+}else{
+var firstChoice = parseInt(document.getElementById("math1").value);
+var secondChoice = parseInt(document.getElementById("math2").value);
+var answer = firstChoice * secondChoice;
+document.getElementById("result").innerHTML = "The product of the two numbers are " + answer;
+}
+}
+</script>
+</body>
+</head>
+</html>

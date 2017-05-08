@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<title>Blackjack</title>
+<center><p class="kang">Kang-Lin Cheng</p></center>
+<ul id="my_nav" class="nav nav-tabs">
+<li><a href="index.html">Home</a>
+<li class="active"><a href="games.html">Games</a>
+<li><a href="selenium.html">Selenium Playground</a>
+<li><a href="contact.html">Contact Me</a>
+</ul>
+<h1>Blackjack</h2>
+<p>Let's try your luck! Try to get 21, but don't go over! You will get two cards to begin with.
+Then, you can choose to hit with a third card, or stay. The dealer will hit if its cards are not higher than 17.
+Aces are worth 11, unless your first two cards are both aces. In which case, one ace will be 11, and the other one will be worth only 1.
+</p>
+<button id="play" onclick="play()">Let's Play</button>
+<p id="test"></p>
+<p id="test2"></p>
+<p id="test3"></p>
+<p id="results"></p>
+<button id="hitMe" style = "visibility:hidden" onclick="hit()">Hit Me</button> <!Hide the hit me and stay buttons until the game has started>
+<button id="stay" style="visibility:hidden" onclick="stay()">Stay</button>
+<script>
+var firstCard, secondCard, thirdCard, total;
+var dealerCard1, dealerCard2, dealerCard3, dealerTotal;
+function play(){       
+     firstCard = getRandValue();
+     secondCard = getRandValue();
+     total = displayTotalValue(firstCard, secondCard);    
+     dealerCard1 = getRandValue();
+     dealerCard2 = getRandValue();
+     dealerTotal = displayDealerTotal(dealerCard1, dealerCard2);    
+   document.getElementById("results").innerHTML = ""; //each time we play, we need to clear the p tags with id=results
+  } 
+function hit(){
+   thirdCard = getRandValue();
+   total = displayTotalValue3(firstCard, secondCard, thirdCard);
+  if(total>21){ //if player busts, then no need for the dealer to consider hitting or staying
+    checkVictory(total, dealerTotal);
+    document.getElementById("test3").innerHTML="Dealer's cards are: " + dealerCard1 + " and " + dealerCard2 + ". The total is: " + dealerTotal;
+  }else{
+  if(dealerTotal > 17){ //the rules are that the dealer must keep hitting until its values are greater than 17
+    alert("Dealer has hit more than 17. The dealer will stay.");
+    document.getElementById("test3").innerHTML="Dealer's cards are: " + dealerCard1 + " and " + dealerCard2 + ". The total is: " + dealerTotal;
+  }else{
+    dealerCard3 = getRandValue();
+     dealerTotal = displayDealerTotal3(dealerCard1, dealerCard2, dealerCard3);
+  }
+  checkVictory(total, dealerTotal);
+}
+}
+function stay(){
+  if(dealerTotal > 17){
+    alert("Dealer has hit more than 17. The dealer will stay.");
+    document.getElementById("test3").innerHTML="Dealer's cards are: " + dealerCard1 + " and " + dealerCard2 + ". The total is: " + dealerTotal;
+  }else{
+    dealerCard3 = getRandValue();
+    dealerTotal = displayDealerTotal3(dealerCard1, dealerCard2, dealerCard3);
+  }
+  checkVictory(total, dealerTotal);
+}
+  function getRandValue() { //this randomly generates a number between 2 to 14
+     var rand = Math.floor((Math.random()*(14-2+1))+2); 
+     if(rand===12||rand===13||rand===14){      //Jack, Queen, and King       
+       return 10;
+    } else {      
+      return rand;
+    }
+  }
+  function displayTotalValue(firstCard, secondCard) {
+    var total = firstCard + secondCard;
+    if(total === 22){ //if player gets two aces, then the total must not be 22. Instead, one of the ace will be worth only 1 instead of 11.
+      total = 12;
+     document.getElementById("test2").innerHTML="Your two cards are: " + firstCard + " (ace) and " + secondCard +". The total is: " + total;
+    }else{
+   document.getElementById("test2").innerHTML="Your two cards are: " + firstCard + " and " + secondCard +". The total is: " + total;
+    }
+    document.getElementById("hitMe").style.visibility="visible";
+    document.getElementById("stay").style.visibility="visible";
+    return total;
+  }
+function displayTotalValue3(firstCard, secondCard, thirdCard){
+  var total = firstCard + secondCard + thirdCard;
+  document.getElementById("test2").innerHTML="Your cards are: " + firstCard + " and " + secondCard +" and " + thirdCard +". The total is: " + total;
+  return total;
+}
+
+function displayDealerTotal(dealerCard1, dealerCard2){
+  var dealerTotal = dealerCard1 + dealerCard2;
+  if(dealerTotal === 22){
+    dealerTotal = 12;
+  }
+  document.getElementById("test3").innerHTML="Dealer's first card is: " + dealerCard1 + ". The second card is a hole."
+  return dealerTotal;
+}
+function displayDealerTotal3(dealerCard1, dealerCard2, dealerCard3){
+  var dealerTotal = dealerCard1 + dealerCard2 + dealerCard3;
+  document.getElementById("test3").innerHTML="Dealer's cards are: " + dealerCard1 + " and " + dealerCard2 + " and " + dealerCard3 +". The total is " + dealerTotal;
+  return dealerTotal;
+}
+function checkVictory(total, dealerTotal){
+  if(total > 21){     
+    document.getElementById("results").innerHTML = "You've busted by going over 21! Dealer wins!";
+    document.getElementById("hitMe").style.visibility="hidden";
+    document.getElementById("stay").style.visibility="hidden";
+  }else if(dealerTotal > 21){    
+    document.getElementById("results").innerHTML = "Dealer busted by going over 21! You win!";
+    document.getElementById("hitMe").style.visibility="hidden";
+    document.getElementById("stay").style.visibility="hidden";
+  }else if (total > dealerTotal){    
+    document.getElementById("results").innerHTML = "Congratulations! You've won!";
+    document.getElementById("hitMe").style.visibility="hidden";
+    document.getElementById("stay").style.visibility="hidden";
+  }else if(total === dealerTotal){   
+    document.getElementById("results").innerHTML = "Tie game!";
+    document.getElementById("hitMe").style.visibility="hidden";
+    document.getElementById("stay").style.visibility="hidden";
+  }else if (total<dealerTotal){     
+    document.getElementById("results").innerHTML = "You lost! Sorry!";
+    document.getElementById("hitMe").style.visibility="hidden";
+    document.getElementById("stay").style.visibility="hidden";
+  }
+}
+
+</script>
+</body>
+</head>
+</html>

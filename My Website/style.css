@@ -1,0 +1,55 @@
+p.kang{
+	font-size:2em;
+	font-weight: bold;
+}
+
+body{
+	background-image:url("indigo.jpg");
+}
+
+label { display: inline-block; width: 550px; text-align: right; }
+
+
+
+#my_nav{
+    list-style-type:none;
+    background: #ff9999;
+    margin-bottom: 15px;
+}
+
+h1{
+	color:blue;
+}
+
+ul li{
+	display: inline-block;
+}
+
+a{
+	display:inline-block;
+	padding: 5px;
+	}
+#rock{
+margin-right: 20px;
+}
+#paper{
+	margin-right: 20px;
+}
+
+#add{
+margin-right: 20px;
+}
+
+#multiply{
+	margin-right: 20px;
+}
+
+
+.footer{
+position: absolute;
+  right: 0;
+  bottom: -120;
+  left: 0;
+  padding: 1rem;  
+  text-align: center;
+}

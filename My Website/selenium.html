@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<title>Kang-Lin Cheng's Website</title>
+<center><p class="kang">Kang-Lin Cheng</p></center>
+<ul id="my_nav" class="nav nav-tabs">
+<li><a href="index.html">Home</a>
+<li><a href="games.html">Games</a>
+<li class="active"><a href="selenium.html">Selenium Playground</a>
+<li><a href="contact.html">Contact Me</a>
+</ul>
+<h1>Selenium Playground</h2>
+<p>Here is where you (mainly I) can play around with automation tools. Have fun!</p>
+<button id="popup" onclick="popUpTest()">Click me for a pop-up</button></br>
+</br>
+<!First dropdown>
+<select name="dropdown" id="firstDropdown" onchange="show()">
+            <option value="">- Select Something -</option>
+            <option value="Choice 1">Choice 1</option> 
+            <option value="Choice 2">Choice 2</option>
+            <option value="Choice 3">Choice 3</option>            
+          </select>
+</br>
+<p id="Choice1"></p>
+<p>You will be required to choose something from the next dropdown</p>
+<!Starting from here is the second dropdown>
+<select name="dropdown1" id="secondDropdown" onchange="input()">
+<option value="" disabled="disabled" selected="selected">- Please Select Something -</option>
+<option value="CC1">First Choice</option>
+<option value="CC2">Second Choice</option>
+<option value="CC3">Third Choice</option>
+</select>
+<input id="textbox" style = "visibility:hidden">
+<p id="aaa"></p>
+</br>
+<a href="login.html" id="part2">Click here to go to a login page and proceed to page two!</a></br>
+<a href="popup.html" id="newWind" onclick="window.open('popup.html', 'newwindow', 'width=800, height=600'); return false;">Click here to open in a new window</a>
+</br>
+		  <center><iframe src="./Stuff/iframepage.html" height="200" width="500"><p>Your browser does not support iframes</p></iframe><center>
+</br>
+<script>
+function popUpTest(){
+alert("This is a pop-up for testing");
+}
+
+
+function show(){
+var drop1 = document.getElementById("firstDropdown").value;
+if(drop1 ===""){
+document.getElementById("Choice1").innerHTML = "Please select something from the dropdown above.";
+}else
+document.getElementById("Choice1").innerHTML = "You have chosen " + drop1 + "! Great choice";
+}
+var select = document.getElementById("secondDropdown");
+
+
+select.onchange = function input(){
+if(select.value=="CC2"){
+document.getElementById("aaa").innerHTML = "Choose the third choice for an input box. </br>"
+document.getElementById("textbox").style.visibility = "hidden";
+}else if(select.value=="CC3"){
+document.getElementById("aaa").innerHTML = "This textbox only appears if you select the third choice.";
+document.getElementById("textbox").style.visibility = "visible";
+}else{
+document.getElementById("aaa").innerHTML = "";
+document.getElementById("textbox").style.visibility = "hidden";
+}
+
+}
+
+</script>
+
+</body>
+</head>
+</html>

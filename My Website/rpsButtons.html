@@ -1,0 +1,102 @@
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<title>Rock Paper Scissors</title>
+<center><p class="kang">Kang-Lin Cheng</p></center>
+<ul id="my_nav" class="nav nav-tabs">
+<li id="top_nav"><a href="index.html">Home</a>
+<li class="active"><a href="games.html">Games</a>
+<li><a href="selenium.html">Selenium Playground</a>
+<li><a href="contact.html">Contact Me</a>
+</ul>
+<h1>The New and Improved: Rock, Paper, Scissors!</h1>
+<h2>Now With Buttons and Game Statistics!</h2>
+<p>Welcome to an exciting game of rock, paper, scissors! You'll be playing against a computer. </br>
+Please click on one of the buttons: rock, paper, or scissors.</p>
+<button id="rock"  onclick="compare('rock')">Rock</button>
+<button id="paper" onclick="compare('paper')">Paper</button>
+<button id="scissors" onclick="compare('scissors')">Scissors</button>
+</br>
+<b><p id="counter"></p></b>
+<b><p id="winRatio"></p></b>
+<p id="demo"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+<script>
+var playerVictory = 0;
+var computerVictory = 0;
+var tieGame = 0;
+var ratio;
+function compare(playerChoice){
+var rand = Math.random();
+var compChoice;
+if(rand <= 0.33) {
+compChoice = "rock";
+}else if (rand <=0.66) {
+compChoice = "scissors";
+} else {
+compChoice = "paper";
+}
+
+if(playerChoice === compChoice){
+document.getElementById("demo").innerHTML ="Your choice is: " + playerChoice + ", and the computer's choice is: " + compChoice + "</br>";
+document.getElementById("demo2").innerHTML = "Oh, tie game!";
+tieGame++;
+
+}else if(playerChoice == "rock" && compChoice =="paper"){
+document.getElementById("demo").innerHTML ="Your choice is: " + playerChoice + ", and the computer's choice is: " + compChoice + "</br>";
+document.getElementById("demo2").innerHTML ="Sorry, you lost. Better luck next time!";
+computerVictory++;
+ratio = ((playerVictory)/(playerVictory + computerVictory))*100;
+}else if (playerChoice ==="rock" && compChoice ==="scissors"){
+document.getElementById("demo").innerHTML ="Your choice is: " + playerChoice + ", and the computer's choice is: " + compChoice + "</br>";
+document.getElementById("demo2").innerHTML ="Congratulations, you've won this round!";
+playerVictory++;
+ratio = ((playerVictory)/(playerVictory + computerVictory))*100;
+}else if (playerChoice === "paper" && compChoice ==="rock") {
+document.getElementById("demo").innerHTML ="Your choice is: " + playerChoice + ", and the computer's choice is: " + compChoice + "</br>";
+document.getElementById("demo2").innerHTML ="Congratulations, you've won this round!";
+playerVictory++;
+ratio = ((playerVictory)/(playerVictory + computerVictory))*100;
+}else if (playerChoice === "paper" && compChoice === "scissors") {
+document.getElementById("demo").innerHTML ="Your choice is: " + playerChoice + ", and the computer's choice is: " + compChoice + "</br>";
+document.getElementById("demo2").innerHTML ="Sorry, you lost. Better luck next time!";
+computerVictory++;
+ratio = ((playerVictory)/(playerVictory + computerVictory))*100;
+} else if (playerChoice === "scissors" && compChoice === "rock"){
+document.getElementById("demo").innerHTML ="Your choice is: " + playerChoice + ", and the computer's choice is: " + compChoice + "</br>";
+document.getElementById("demo2").innerHTML ="Sorry, you lost. Better luck next time!";
+computerVictory++;
+ratio = ((playerVictory)/(playerVictory + computerVictory))*100;
+}else if (playerChoice === "scissors" && compChoice === "paper"){
+document.getElementById("demo").innerHTML ="Your choice is: " + playerChoice + ", and the computer's choice is: " + compChoice + "</br>";
+document.getElementById("demo2").innerHTML ="Congratulations, you've won this round!";
+playerVictory++;
+ratio = ((playerVictory)/(playerVictory + computerVictory))*100;
+}else {
+document.getElementById("demo").innerHTML ="</br>";
+document.getElementById("demo2").innerHTML ="You did not enter a valid value. Please check your spelling, and select: rock, paper, scissors.";
+document.getElementById("demo3").innerHTML = "";
+}
+document.getElementById("counter").innerHTML = "Player Win(s): " + playerVictory + " Computer Win(s): " + computerVictory + " Tie Game(s): " + tieGame;
+if(playerVictory>0 && computerVictory===0){
+document.getElementById("winRatio").innerHTML = "Win Ratio: 100%";
+}else if(playerVictory ===0 && computerVictory===0){
+document.getElementById("winRatio").innerHTML = "";
+}else{
+document.getElementById("winRatio").innerHTML = "Win Ratio: " + Math.round(ratio) + "%";
+}
+document.getElementById("demo3").innerHTML = "Thank you for playing!";
+}
+
+</script>
+</body>
+</head>
+</html>

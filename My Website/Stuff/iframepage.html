@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../style.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="../style.css">
+<body>
+<title>Kang-Lin Cheng's Website</title>
+<ul id="my_nav">
+<li><a href="../index.html">Home</a>
+<li><a href="../games.html">Games</a>
+<li><a href="../selenium.html">Selenium Playground</a>
+<li><a href="../contact.html">Contact Me</a>
+</ul>
+<h1>iFrame Site</h1>
+<p>This is my iframe page</p>
+<input id="takeIn"><button onclick="writeTo()">Click Here!</button>
+<p id="a1"></p>
+<script>
+function writeTo(){
+document.getElementById("a1").innerHTML = "You typed in " + document.getElementById("takeIn").value;
+}
+</script>
+</body>
+</head>
+</html>

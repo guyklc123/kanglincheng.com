@@ -1,0 +1,4 @@
+1. In Filezilla, connect to the host and use the username and password (as per iPage instructions)
+2. Once connected, navigate on the left side to the my website folder
+3. Double-click and enter the folder 
+4. Right click and upload all the files

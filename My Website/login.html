@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<body>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<title>Kang-Lin Cheng's Website</title>
+<center><p class="kang">Kang-Lin Cheng</p></center>
+<ul id="my_nav">
+<li><a href="index.html">Home</a>
+<li><a href="games.html">Games</a>
+<li><a href="selenium.html">Selenium Playground</a>
+<li><a href="contact.html">Contact Me</a>
+</ul>
+<h1>Login Page</h1>
+<p>Please use the following to login correctly: </br>
+Username: test123 </br>
+Password: pass123</p>
+
+<label for="name">Username:</label> <input type="text" id="username" placeholder="Enter Username"></br>
+<label for="password">Password: </label> <input type="password" id="pw" placeholder="Enter Password"></br>
+</br>
+<center><input type="button" value="Log In" id="log" onclick="log()">
+<input type="reset" value="Reset"id="cancel"></center>
+<font color="red"><b><p id="message"></p></b></font>
+
+<script>
+function log(){
+var user = document.getElementById("username").value;
+var pass = document.getElementById("pw").value;
+if(user=="test123" && pass == "pass123"){
+window.open('selenium2.html', '_self');
+document.getElementById("message").innerHTML = "";
+}else{
+document.getElementById("message").innerHTML = "Your login information is incorrect. Please try again.";
+}
+}
+</script>
+</body>
+</head>
+</html>
